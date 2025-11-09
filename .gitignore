@@ -6,14 +6,12 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
 lib/
 lib64/
 parts/
-sdist/
 var/
 wheels/
 *.egg-info/
@@ -48,9 +46,6 @@ workspaces.json.bak
 
 # Build artifacts
 version_info.txt
-dist/*.exe
-dist/*.zip
-dist/installer/
 RELEASE_SUMMARY.md
 
 # Windows
