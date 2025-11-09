@@ -1,0 +1,12 @@
+# Windows 11 Workspace Manager Requirements
+# Python 3.10+ required
+
+# Core dependencies
+pyvda==0.4.0           # Virtual desktop management for Windows
+pywin32==307           # Windows API access
+psutil==5.9.8          # Process and system information
+rich==13.7.1           # Beautiful terminal output
+
+# Optional but recommended
+# If you encounter issues with pyvda, you might need:
+# comtypes==1.2.0      # COM interface support (pyvda dependency)

@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(python main.py:*)",
+      "Bash(python:*)",
+      "Bash(taskkill:*)",
+      "Bash(where.exe wt.exe)",
+      "Bash(tasklist:*)",
+      "Bash(findstr:*)",
+      "Bash(where:*)",
+      "Bash(cmd /c \"start /b wt.exe -d C:\\Windows\")",
+      "Bash(timeout /t 3 /nobreak)",
+      "Bash(nul)",
+      "Bash(dir \"C:\\development\\back\\ocrBackDev]\" 2)",
+      "Bash(git --version:*)",
+      "Bash(gh:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

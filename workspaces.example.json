@@ -1,0 +1,199 @@
+{
+  "workspaces": [
+    {
+      "name": "cash_development",
+      "description": "Full stack development environment with VS Code, terminals, and browser",
+      "apps": [
+        {
+          "id": "vscode_backend",
+          "exe": "C:\\Users\\juans\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+          "args": [
+            "C:\\development\\back\\ocrFrontDev"
+          ],
+          "working_dir": "C:\\development\\back\\ocrFrontDev",
+          "virtual_desktop": 0,
+          "window": {
+            "x": 1600,
+            "y": 0,
+            "width": 1600,
+            "height": 1440
+          }
+        },
+        {
+          "id": "terminal_backend",
+          "exe": "wt.exe",
+          "args": [
+            "-d",
+            "C:\\development\\back\\ocrBackDev"
+          ],
+          "working_dir": "C:\\development\\back\\ocrBackDev",
+          "virtual_desktop": 0,
+          "window": {
+            "x": 0,
+            "y": 0,
+            "width": 960,
+            "height": 1440
+          }
+        },
+        {
+          "id": "terminal_frontend",
+          "exe": "wt.exe",
+          "args": [
+            "-d",
+            "C:\\development\\my-project\\frontend"
+          ],
+          "working_dir": "C:\\development\\my-project\\frontend",
+          "virtual_desktop": 1,
+          "window": {
+            "x": 0,
+            "y": 0,
+            "width": 960,
+            "height": 1440
+          }
+        },
+        {
+          "id": "vscode_frontend",
+          "exe": "C:\\Users\\juans\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+          "args": [
+            "C:\\development\\front\\cashocrandscrapingDev"
+          ],
+          "working_dir": "C:\\development\\front\\cashocrandscrapingDev",
+          "virtual_desktop": 1,
+          "window": {
+            "x": 1600,
+            "y": 0,
+            "width": 1600,
+            "height": 1440
+          }
+        },
+        {
+          "id": "browser_docs",
+          "exe": "C:\\Users\\juans\\AppData\\Local\\Perplexity\\Comet\\Application\\comet.exe",
+          "args": [
+            "--new-window",
+            "http://localhost:5372"
+          ],
+          "working_dir": null,
+          "virtual_desktop": 2,
+          "window": {
+            "x": 0,
+            "y": 0,
+            "width": 2560,
+            "height": 1440
+          }
+        }
+      ]
+    },
+    {
+      "name": "productivity",
+      "description": "Office productivity workspace with email, calendar, and documents",
+      "apps": [
+        {
+          "id": "outlook",
+          "exe": "C:\\Program Files\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE",
+          "args": [],
+          "working_dir": null,
+          "virtual_desktop": 0,
+          "window": {
+            "x": 0,
+            "y": 0,
+            "width": 960,
+            "height": 1080
+          }
+        },
+        {
+          "id": "teams",
+          "exe": "C:\\Users\\{USERNAME}\\AppData\\Local\\Microsoft\\Teams\\current\\Teams.exe",
+          "args": [],
+          "working_dir": null,
+          "virtual_desktop": 0,
+          "window": {
+            "x": 960,
+            "y": 0,
+            "width": 960,
+            "height": 1080
+          }
+        },
+        {
+          "id": "onenote",
+          "exe": "C:\\Program Files\\Microsoft Office\\root\\Office16\\ONENOTE.EXE",
+          "args": [],
+          "working_dir": null,
+          "virtual_desktop": 1,
+          "window": {
+            "x": 0,
+            "y": 0,
+            "width": 1920,
+            "height": 1080
+          }
+        }
+      ]
+    },
+    {
+      "name": "gaming",
+      "description": "Gaming setup with Steam, Discord, and OBS",
+      "apps": [
+        {
+          "id": "steam",
+          "exe": "C:\\Program Files (x86)\\Steam\\steam.exe",
+          "args": [],
+          "working_dir": null,
+          "virtual_desktop": 0,
+          "window": {
+            "x": 0,
+            "y": 0,
+            "width": 1920,
+            "height": 1080
+          }
+        },
+        {
+          "id": "discord",
+          "exe": "C:\\Users\\{USERNAME}\\AppData\\Local\\Discord\\app-1.0.9011\\Discord.exe",
+          "args": [],
+          "working_dir": null,
+          "virtual_desktop": 1,
+          "window": {
+            "x": 0,
+            "y": 0,
+            "width": 960,
+            "height": 1080
+          }
+        },
+        {
+          "id": "obs",
+          "exe": "C:\\Program Files\\obs-studio\\bin\\64bit\\obs64.exe",
+          "args": [
+            "--startstreaming"
+          ],
+          "working_dir": null,
+          "virtual_desktop": 1,
+          "window": {
+            "x": 960,
+            "y": 0,
+            "width": 960,
+            "height": 1080
+          }
+        }
+      ]
+    },
+    {
+      "name": "minimal",
+      "description": "Minimal workspace for testing - single notepad window",
+      "apps": [
+        {
+          "id": "notepad",
+          "exe": "C:\\Windows\\notepad.exe",
+          "args": [],
+          "working_dir": null,
+          "virtual_desktop": 0,
+          "window": {
+            "x": 100,
+            "y": 100,
+            "width": 800,
+            "height": 600
+          }
+        }
+      ]
+    }
+  ]
+}
