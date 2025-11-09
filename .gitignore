@@ -44,6 +44,12 @@ debug_*.py
 
 # User workspace configurations (keep example only)
 workspaces.json
+workspaces.json.bak
+
+# Build artifacts
+version_info.txt
+dist/*.exe
+dist/*.zip
 
 # Windows
 Thumbs.db

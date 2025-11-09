@@ -11,6 +11,9 @@ rich==13.7.1           # Beautiful terminal output
 customtkinter==5.2.2   # Modern and customizable tkinter UI library
 Pillow>=10.0.0        # Image processing library (for icon extraction)
 
+# Build dependencies
+pyinstaller>=6.10.0    # For creating standalone executables (Python 3.13+ compatible)
+
 # Optional but recommended
 # If you encounter issues with pyvda, you might need:
 # comtypes==1.2.0      # COM interface support (pyvda dependency)
