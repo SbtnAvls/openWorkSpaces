@@ -49,12 +49,12 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False,  # Set to False for GUI app, True for CLI - Temporarily True for debugging
+    console=False,  # No console window for GUI app
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=None,  # Add icon path here if you have one: 'assets/icon.ico'
+    icon='assets/icon.ico',  # Application icon
     version_file='version_info.txt'  # Will be created by build script
 )
