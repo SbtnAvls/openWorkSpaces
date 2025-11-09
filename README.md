@@ -24,20 +24,19 @@ A powerful and intuitive workspace management tool for Windows 11 that allows yo
 
 Download the latest release from the [Releases](https://github.com/yourusername/workspace-manager/releases) page:
 
-**Option 1: MSI Installer** (Recommended)
-- Download `WorkspaceManager-v1.0.0.msi`
-- Double-click to install
-- Adds to Start Menu and PATH automatically
-
-**Option 2: Inno Setup Installer**
+**Option 1: Inno Setup Installer** (Recommended)
 - Download `WorkspaceManager-v1.0.0-Setup.exe`
 - Run the installer wizard
 - Choose installation location and shortcuts
+- Creates Start Menu shortcuts and desktop icon
 
-**Option 3: Portable (No Installation)**
+**Option 2: Portable (No Installation)**
 - Download `WorkspaceManager-v1.0.0.zip`
 - Extract anywhere
 - Run `WorkspaceManager.exe`
+- No installation needed
+
+**Note**: MSI installer is not available when built with Python 3.13. Inno Setup provides a superior installation experience.
 
 ### For Developers
 
@@ -420,10 +419,11 @@ python setup_msi.py bdist_msi
 ```
 
 **Output files** (in `dist/`):
-- `WorkspaceManager.exe` - Standalone executable (~35 MB)
+- `WorkspaceManager.exe` - Standalone executable (~40 MB)
 - `WorkspaceManager-v1.0.0.zip` - Portable package
-- `WorkspaceManager-v1.0.0.msi` - Windows Installer
-- `WorkspaceManager-v1.0.0-Setup.exe` - Inno Setup installer (if installed)
+- `installer/WorkspaceManager-v1.0.0-Setup.exe` - Inno Setup installer (if Inno Setup is installed)
+
+**Note**: MSI installer requires Python 3.12 or earlier. Use Inno Setup for professional installer with Python 3.13.
 
 **Documentation**:
 - See `QUICK_START_RELEASE.md` for quick guide

@@ -150,6 +150,13 @@ def build_msi_installer():
     )
 
     if result.returncode != 0:
+        # Check if it's the Python 3.13 issue
+        if "bdist_msi is not supported on Python 3.13" in result.stderr:
+            print_warning("MSI build skipped - cx_Freeze doesn't support Python 3.13 yet")
+            print_info("  Use Inno Setup installer instead (installer.iss)")
+            print_info("  Or use the standalone EXE + ZIP for distribution")
+            return False
+
         print_error("MSI build failed")
         print(result.stderr)
         return False

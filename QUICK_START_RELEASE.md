@@ -21,8 +21,9 @@ python release.py
 Esto crea automáticamente:
 - ✅ `WorkspaceManager.exe` - Ejecutable standalone
 - ✅ `WorkspaceManager-v1.1.0.zip` - Paquete portable
-- ✅ `WorkspaceManager-v1.1.0.msi` - Instalador MSI
 - ✅ `WorkspaceManager-v1.1.0-Setup.exe` - Instalador Inno Setup (si está instalado)
+
+**Nota sobre MSI**: cx_Freeze no soporta MSI en Python 3.13 todavía. Usa Inno Setup en su lugar (es mejor).
 
 ### 3️⃣ Probar
 
@@ -71,12 +72,14 @@ python setup_msi.py bdist_msi
 
 ```
 dist/
-├── WorkspaceManager.exe                    # Ejecutable standalone (~35MB)
-├── WorkspaceManager-v1.0.0.zip            # Portable package (~35MB)
-├── WorkspaceManager-v1.0.0.msi            # MSI installer (~35MB)
-├── WorkspaceManager-v1.0.0-Setup.exe      # Inno installer (~36MB)
+├── WorkspaceManager.exe                    # Ejecutable standalone (~40MB)
+├── WorkspaceManager-v1.0.0.zip            # Portable package (~40MB)
+├── installer/
+│   └── WorkspaceManager-v1.0.0-Setup.exe  # Inno installer (~40MB, si Inno Setup está instalado)
 └── RELEASE_SUMMARY.md                      # Documentación de release
 ```
+
+**Nota**: MSI no está disponible en Python 3.13. Usa Inno Setup para instalador profesional.
 
 ---
 
