@@ -71,15 +71,32 @@ def clean_all():
     dirs_to_clean = ['build', 'dist']
     files_to_clean = ['version_info.txt']
 
+    import time
+
     for dir_name in dirs_to_clean:
         if os.path.exists(dir_name):
-            shutil.rmtree(dir_name)
-            print(f"  Removed {dir_name}/")
+            max_attempts = 3
+            for attempt in range(max_attempts):
+                try:
+                    shutil.rmtree(dir_name)
+                    print(f"  Removed {dir_name}/")
+                    break
+                except (PermissionError, OSError) as e:
+                    if attempt < max_attempts - 1:
+                        print_warning(f"  Retry {attempt + 1}/{max_attempts} - Files in use, waiting...")
+                        time.sleep(2)
+                    else:
+                        print_warning(f"  Could not remove {dir_name}/ - Files may be in use")
+                        print_info(f"  Close any Windows Explorer windows or running programs, then try again")
+                        raise
 
     for file_name in files_to_clean:
         if os.path.exists(file_name):
-            os.remove(file_name)
-            print(f"  Removed {file_name}")
+            try:
+                os.remove(file_name)
+                print(f"  Removed {file_name}")
+            except (PermissionError, OSError):
+                print_warning(f"  Could not remove {file_name}")
 
     print_success("Cleanup complete")
 

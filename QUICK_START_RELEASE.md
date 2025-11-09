@@ -96,6 +96,21 @@ Si no lo tienes, `release.py` simplemente lo omitirá (generará los demás).
 
 ## Troubleshooting
 
+**❌ Error: "The process cannot access the file because it is being used"**
+
+Esto ocurre cuando tienes archivos de build anteriores abiertos. **Solución**:
+
+```bash
+# Opción 1: Usar el script automático
+clean_and_release.bat
+
+# Opción 2: Limpiar manualmente
+1. Cierra TODAS las ventanas del Explorador de Windows
+2. Cierra cualquier WorkspaceManager.exe que esté corriendo
+3. Ejecuta: clean_build.bat
+4. Luego ejecuta: python release.py
+```
+
 **❌ Error al construir MSI**
 ```bash
 pip install --upgrade cx-Freeze
