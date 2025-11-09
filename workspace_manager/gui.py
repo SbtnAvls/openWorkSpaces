@@ -16,6 +16,8 @@ import threading
 from PIL import Image, ImageTk
 import io
 
+from .config import get_default_config_path, ConfigManager
+
 
 class WindowPositionSelector(ctk.CTkFrame):
     """Visual widget for positioning and sizing windows on screen"""
@@ -1680,7 +1682,7 @@ class WorkspaceCard(ctk.CTkFrame):
         if result:
             try:
                 # Load current workspaces
-                config_path = Path(__file__).parent.parent / "workspaces.json"
+                config_path = get_default_config_path()
 
                 with open(config_path, 'r', encoding='utf-8') as f:
                     data = json.load(f)
@@ -1744,8 +1746,7 @@ class WorkspaceCard(ctk.CTkFrame):
                 workspace.add_app(app)
 
             try:
-                config_path = Path(__file__).parent.parent / "workspaces.json"
-                config_manager = ConfigManager(str(config_path))
+                config_manager = ConfigManager()  # Uses default path in Documents
                 config_manager.add_workspace(workspace, overwrite=True)
 
                 messagebox.showinfo(
@@ -1787,13 +1788,10 @@ class WorkspaceManagerGUI(ctk.CTk):
 
     def _load_workspaces(self) -> List[Dict[str, Any]]:
         """Load workspaces from JSON file"""
-        config_path = Path(__file__).parent.parent / "workspaces.json"
+        config_path = get_default_config_path()
 
+        # If file doesn't exist, return empty list (will be created on first save)
         if not config_path.exists():
-            messagebox.showwarning(
-                "Archivo no encontrado",
-                f"No se encontró el archivo de configuración:\n{config_path}"
-            )
             return []
 
         try:
@@ -1915,8 +1913,7 @@ class WorkspaceManagerGUI(ctk.CTk):
                 workspace.add_app(app)
 
             try:
-                config_path = Path(__file__).parent.parent / "workspaces.json"
-                config_manager = ConfigManager(str(config_path))
+                config_manager = ConfigManager()  # Uses default path in Documents
                 config_manager.add_workspace(workspace, overwrite=False)
 
                 messagebox.showinfo(

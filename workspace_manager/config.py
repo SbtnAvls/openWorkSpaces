@@ -13,6 +13,25 @@ from .models import WorkspaceCollection, Workspace
 logger = logging.getLogger(__name__)
 
 
+def get_default_config_path() -> Path:
+    """
+    Get the default configuration file path in user's Documents folder.
+    Creates the directory if it doesn't exist.
+
+    Returns:
+        Path to workspaces.json in Documents/WorkspaceManager/
+    """
+    # Get user's Documents folder
+    documents = Path.home() / "Documents"
+
+    # Create WorkspaceManager folder in Documents
+    config_dir = documents / "WorkspaceManager"
+    config_dir.mkdir(parents=True, exist_ok=True)
+
+    # Return path to workspaces.json
+    return config_dir / "workspaces.json"
+
+
 class ConfigError(Exception):
     """Custom exception for configuration errors."""
     pass
@@ -21,14 +40,17 @@ class ConfigError(Exception):
 class ConfigManager:
     """Manages workspace configuration files."""
 
-    def __init__(self, config_file: str = "workspaces.json"):
+    def __init__(self, config_file: Optional[str] = None):
         """
         Initialize the configuration manager.
 
         Args:
-            config_file: Path to the configuration file
+            config_file: Path to the configuration file. If None, uses default path in Documents.
         """
-        self.config_file = Path(config_file)
+        if config_file is None:
+            self.config_file = get_default_config_path()
+        else:
+            self.config_file = Path(config_file)
         self.collection: Optional[WorkspaceCollection] = None
 
     def ensure_config_exists(self) -> None:

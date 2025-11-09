@@ -101,8 +101,8 @@ class WorkspaceCLI:
         # Global arguments
         parser.add_argument(
             '-c', '--config',
-            default='workspaces.json',
-            help='Configuration file path (default: workspaces.json)'
+            default=None,
+            help='Configuration file path (default: Documents/WorkspaceManager/workspaces.json)'
         )
         parser.add_argument(
             '-v', '--verbose',
@@ -271,7 +271,8 @@ class WorkspaceCLI:
 
     def cmd_launch(self, args) -> int:
         """Handle the launch command."""
-        self.config_manager.config_file = Path(args.config)
+        if args.config is not None:
+            self.config_manager.config_file = Path(args.config)
 
         try:
             workspace = self.config_manager.get_workspace(args.name)
@@ -303,7 +304,8 @@ class WorkspaceCLI:
 
     def cmd_capture(self, args) -> int:
         """Handle the capture command."""
-        self.config_manager.config_file = Path(args.config)
+        if args.config is not None:
+            self.config_manager.config_file = Path(args.config)
 
         try:
             # Capture the workspace
@@ -332,7 +334,8 @@ class WorkspaceCLI:
 
     def cmd_list(self, args) -> int:
         """Handle the list command."""
-        self.config_manager.config_file = Path(args.config)
+        if args.config is not None:
+            self.config_manager.config_file = Path(args.config)
 
         try:
             workspaces = self.config_manager.list_workspaces()
@@ -379,7 +382,8 @@ class WorkspaceCLI:
 
     def cmd_show(self, args) -> int:
         """Handle the show command."""
-        self.config_manager.config_file = Path(args.config)
+        if args.config is not None:
+            self.config_manager.config_file = Path(args.config)
 
         try:
             workspace = self.config_manager.get_workspace(args.name)
@@ -405,7 +409,8 @@ class WorkspaceCLI:
 
     def cmd_remove(self, args) -> int:
         """Handle the remove command."""
-        self.config_manager.config_file = Path(args.config)
+        if args.config is not None:
+            self.config_manager.config_file = Path(args.config)
 
         try:
             # Check if workspace exists
@@ -439,7 +444,8 @@ class WorkspaceCLI:
 
     def cmd_export(self, args) -> int:
         """Handle the export command."""
-        self.config_manager.config_file = Path(args.config)
+        if args.config is not None:
+            self.config_manager.config_file = Path(args.config)
 
         try:
             self.config_manager.export_workspace(args.name, args.output)
@@ -456,7 +462,8 @@ class WorkspaceCLI:
 
     def cmd_import(self, args) -> int:
         """Handle the import command."""
-        self.config_manager.config_file = Path(args.config)
+        if args.config is not None:
+            self.config_manager.config_file = Path(args.config)
 
         try:
             self.config_manager.import_workspace(args.file, overwrite=args.overwrite)
@@ -473,7 +480,8 @@ class WorkspaceCLI:
 
     def cmd_validate(self, args) -> int:
         """Handle the validate command."""
-        self.config_manager.config_file = Path(args.config)
+        if args.config is not None:
+            self.config_manager.config_file = Path(args.config)
 
         try:
             collection = self.config_manager.load()

@@ -45,9 +45,9 @@ python main.py --help
 
 ### Launch a Minimal Test Workspace
 
-1. Copy the example configuration:
+1. (Optional) Copy the example configuration to your Documents folder:
 ```bash
-copy workspaces.example.json workspaces.json
+copy workspaces.example.json "%USERPROFILE%\Documents\WorkspaceManager\workspaces.json"
 ```
 
 2. Launch the minimal test workspace:
@@ -56,6 +56,8 @@ python main.py launch minimal
 ```
 
 This will open a simple Notepad window to verify everything is working.
+
+**Note:** The configuration file will be created automatically in `Documents\WorkspaceManager\` when you create your first workspace using the GUI or CLI commands.
 
 ### Capture Your Current Setup
 
@@ -140,7 +142,10 @@ python main.py validate [workspace_name]
 
 ### Configuration File Format
 
-The configuration is stored in `workspaces.json`:
+The configuration is stored in `workspaces.json`, which is automatically saved in your Documents folder at:
+`C:\Users\<YourUsername>\Documents\WorkspaceManager\workspaces.json`
+
+The file will be created automatically when you create your first workspace.
 
 ```json
 {
