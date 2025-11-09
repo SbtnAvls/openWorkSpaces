@@ -39,4 +39,9 @@ if __name__ == "__main__":
 from workspace_manager.cli import main
 
 if __name__ == "__main__":
+    # If no arguments provided, launch GUI by default
+    # This makes double-clicking the .exe open the GUI
+    if len(sys.argv) == 1:
+        sys.argv.append('gui')
+
     main()
