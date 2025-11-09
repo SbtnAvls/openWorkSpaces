@@ -35,8 +35,7 @@ Download the latest release from the [Releases](https://github.com/yourusername/
 - Extract anywhere
 - Run `WorkspaceManager.exe`
 - No installation needed
-
-**Note**: MSI installer is not available when built with Python 3.13. Inno Setup provides a superior installation experience.
+- Perfect for USB drives or portable use
 
 ### For Developers
 
@@ -408,22 +407,17 @@ def _filter_system_windows(self, windows):
 To build standalone executables and installers:
 
 ```bash
-# Build everything (EXE, ZIP, MSI, Inno Setup installer)
+# Build everything (EXE, ZIP, Inno Setup installer)
 python release.py
 
 # Or just EXE and ZIP (faster)
 python build.py
-
-# Or just MSI
-python setup_msi.py bdist_msi
 ```
 
 **Output files** (in `dist/`):
 - `WorkspaceManager.exe` - Standalone executable (~40 MB)
 - `WorkspaceManager-v1.0.0.zip` - Portable package
 - `installer/WorkspaceManager-v1.0.0-Setup.exe` - Inno Setup installer (if Inno Setup is installed)
-
-**Note**: MSI installer requires Python 3.12 or earlier. Use Inno Setup for professional installer with Python 3.13.
 
 **Documentation**:
 - See `QUICK_START_RELEASE.md` for quick guide

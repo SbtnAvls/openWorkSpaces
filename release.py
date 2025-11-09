@@ -137,52 +137,6 @@ def build_pyinstaller_exe():
     print_success("PyInstaller EXE built successfully")
     return True
 
-def build_msi_installer():
-    """Build MSI installer with cx_Freeze"""
-    print_header("Building MSI Installer (cx_Freeze)")
-
-    print_step("Running cx_Freeze setup...")
-
-    result = subprocess.run(
-        [sys.executable, "setup_msi.py", "bdist_msi"],
-        capture_output=True,
-        text=True
-    )
-
-    if result.returncode != 0:
-        # Check if it's the Python 3.13 issue
-        if "bdist_msi is not supported on Python 3.13" in result.stderr:
-            print_warning("MSI build skipped - cx_Freeze doesn't support Python 3.13 yet")
-            print_info("  Use Inno Setup installer instead (installer.iss)")
-            print_info("  Or use the standalone EXE + ZIP for distribution")
-            return False
-
-        print_error("MSI build failed")
-        print(result.stderr)
-        return False
-
-    # Find the generated MSI file
-    msi_files = list(Path("dist").glob("*.msi"))
-
-    if not msi_files:
-        print_error("MSI file not found in dist/")
-        return False
-
-    # Rename MSI to standard naming
-    msi_file = msi_files[0]
-    new_msi_name = f"WorkspaceManager-v{__version__}.msi"
-    new_msi_path = Path("dist") / new_msi_name
-
-    if new_msi_path.exists():
-        os.remove(new_msi_path)
-
-    msi_file.rename(new_msi_path)
-
-    print_success(f"MSI installer created: {new_msi_path}")
-    print_info(f"  Size: {new_msi_path.stat().st_size / (1024*1024):.2f} MB")
-
-    return True
-
 def check_inno_setup():
     """Check if Inno Setup is installed"""
     print_step("Checking for Inno Setup...")
@@ -274,13 +228,6 @@ def create_release_summary():
 
     summary += "### Installers\n"
     for info in files_info:
-        if info['name'].endswith('.msi'):
-            summary += f"- **{info['name']}** ({info['size']:.2f} MB)\n"
-            summary += f"  - Windows Installer package\n"
-            summary += f"  - Adds to Start Menu and PATH\n"
-            summary += f"  - Supports upgrades and uninstall\n\n"
-
-    for info in files_info:
         if 'Setup' in info['name'] and info['name'].endswith('.exe'):
             summary += f"- **{info['name']}** ({info['size']:.2f} MB)\n"
             summary += f"  - Inno Setup installer\n"
@@ -296,31 +243,27 @@ def create_release_summary():
 
     summary += f"""## Installation Methods
 
-### Method 1: MSI Installer (Recommended)
-1. Download `WorkspaceManager-v{__version__}.msi`
-2. Double-click to run installer
-3. Follow installation wizard
-4. Application will be in Start Menu
-5. Command available in PATH
-
-### Method 2: Inno Setup Installer
+### Method 1: Inno Setup Installer (Recommended)
 1. Download `WorkspaceManager-v{__version__}-Setup.exe`
 2. Run the setup executable
-3. Choose installation location
+3. Choose installation location and options
 4. Select desktop shortcut option
-5. Launch after installation
+5. Application will be in Start Menu
+6. Launch after installation
 
-### Method 3: Portable Executable
+### Method 2: Portable ZIP Package
 1. Download `WorkspaceManager-v{__version__}.zip`
 2. Extract to any folder
 3. Run `WorkspaceManager.exe`
 4. No installation needed
+5. Perfect for USB drives
 
-### Method 4: Standalone EXE
+### Method 3: Standalone Executable
 1. Download `WorkspaceManager.exe`
 2. Place in any folder
 3. Run directly
 4. No installation needed
+5. Single file, fully portable
 
 ## Usage
 
@@ -390,9 +333,6 @@ def main():
             print_error("PyInstaller build failed - Stopping")
             sys.exit(1)
 
-        # Build MSI installer
-        if not build_msi_installer():
-            print_warning("MSI build failed - Continuing anyway")
 
         # Build Inno Setup installer (optional)
         build_inno_installer()  # Don't fail if this doesn't work

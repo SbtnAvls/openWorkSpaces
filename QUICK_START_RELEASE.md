@@ -23,8 +23,6 @@ Esto crea automáticamente:
 - ✅ `WorkspaceManager-v1.1.0.zip` - Paquete portable
 - ✅ `WorkspaceManager-v1.1.0-Setup.exe` - Instalador Inno Setup (si está instalado)
 
-**Nota sobre MSI**: cx_Freeze no soporta MSI en Python 3.13 todavía. Usa Inno Setup en su lugar (es mejor).
-
 ### 3️⃣ Probar
 
 ```bash
@@ -60,12 +58,6 @@ git push origin v1.1.0
 python build.py
 ```
 
-### Solo MSI
-
-```bash
-python setup_msi.py bdist_msi
-```
-
 ---
 
 ## Archivos Generados
@@ -78,8 +70,6 @@ dist/
 │   └── WorkspaceManager-v1.0.0-Setup.exe  # Inno installer (~40MB, si Inno Setup está instalado)
 └── RELEASE_SUMMARY.md                      # Documentación de release
 ```
-
-**Nota**: MSI no está disponible en Python 3.13. Usa Inno Setup para instalador profesional.
 
 ---
 
@@ -114,14 +104,10 @@ clean_and_release.bat
 4. Luego ejecuta: python release.py
 ```
 
-**❌ Error al construir MSI**
-```bash
-pip install --upgrade cx-Freeze
-```
-
 **❌ "Inno Setup not found"**
-- Es opcional, el resto se generará de todas formas
-- O instala desde: https://jrsoftware.org/isdl.php
+- Es opcional, pero recomendado para crear un instalador profesional
+- Descarga gratis desde: https://jrsoftware.org/isdl.php
+- Sin Inno Setup, solo se generan EXE + ZIP (que también funcionan perfecto)
 
 **❌ Ejecutable muy grande**
 - Es normal (~35MB incluye Python runtime + GUI + dependencias)
@@ -134,8 +120,8 @@ pip install --upgrade cx-Freeze
 | Script | Qué genera | Tiempo |
 |--------|------------|--------|
 | `build.py` | EXE + ZIP | ~30-60s |
-| `setup_msi.py` | MSI | ~60-90s |
-| `release.py` | **TODO** (EXE + ZIP + MSI + Setup) | ~2-3min |
+| `release.py` | **TODO** (EXE + ZIP + Inno Setup) | ~1-2min |
+| Inno Setup Compiler | Setup.exe | ~10-20s |
 
 ---
 

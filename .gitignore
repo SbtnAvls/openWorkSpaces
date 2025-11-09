@@ -50,9 +50,7 @@ workspaces.json.bak
 version_info.txt
 dist/*.exe
 dist/*.zip
-dist/*.msi
 dist/installer/
-*.msi
 RELEASE_SUMMARY.md
 
 # Windows

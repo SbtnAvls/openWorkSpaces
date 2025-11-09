@@ -13,7 +13,6 @@ Pillow>=10.0.0        # Image processing library (for icon extraction)
 
 # Build dependencies
 pyinstaller>=6.10.0    # For creating standalone executables (Python 3.13+ compatible)
-cx-Freeze>=7.2.0       # For creating MSI installers
 
 # Optional but recommended
 # If you encounter issues with pyvda, you might need:
