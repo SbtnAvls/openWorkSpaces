@@ -23,7 +23,10 @@
       "Bash(dir:*)",
       "Bash(cat:*)",
       "Bash(git restore:*)",
-      "Bash(./WorkspaceManager.exe:*)"
+      "Bash(./WorkspaceManager.exe:*)",
+      "Bash(git tag:*)",
+      "Bash(echo:*)",
+      "Bash(assets/README.md)"
     ],
     "deny": [],
     "ask": []
