@@ -260,6 +260,13 @@ class WorkspaceCLI:
         )
         validate_parser.set_defaults(func=self.cmd_validate)
 
+        # GUI command
+        gui_parser = subparsers.add_parser(
+            'gui',
+            help='Launch graphical user interface'
+        )
+        gui_parser.set_defaults(func=self.cmd_gui)
+
         return parser
 
     def cmd_launch(self, args) -> int:
@@ -509,6 +516,22 @@ class WorkspaceCLI:
 
         except Exception as e:
             console.print(f"[red]Failed to validate: {e}[/red]")
+            return 1
+
+    def cmd_gui(self, args) -> int:
+        """Handle the GUI command."""
+        try:
+            from .gui import run_gui
+            console.print("[cyan]Launching GUI...[/cyan]")
+            run_gui()
+            return 0
+        except ImportError as e:
+            console.print(f"[red]Failed to launch GUI: {e}[/red]")
+            console.print("[yellow]Make sure customtkinter is installed:[/yellow]")
+            console.print("  pip install customtkinter")
+            return 1
+        except Exception as e:
+            console.print(f"[red]Failed to launch GUI: {e}[/red]")
             return 1
 
     def _show_workspace_details(self, workspace: Workspace, compact: bool = False) -> None:

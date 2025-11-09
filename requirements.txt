@@ -7,6 +7,10 @@ pywin32==307           # Windows API access
 psutil==5.9.8          # Process and system information
 rich==13.7.1           # Beautiful terminal output
 
+# GUI dependencies
+customtkinter==5.2.2   # Modern and customizable tkinter UI library
+Pillow>=10.0.0        # Image processing library (for icon extraction)
+
 # Optional but recommended
 # If you encounter issues with pyvda, you might need:
 # comtypes==1.2.0      # COM interface support (pyvda dependency)

@@ -536,3 +536,44 @@ class WorkspaceLauncher:
             time.sleep(1.0)  # Brief pause between retries
 
         return all_success
+
+
+def launch_workspace(workspace_data: dict) -> bool:
+    """
+    Helper function to launch a workspace from dictionary data (used by GUI).
+
+    Args:
+        workspace_data: Dictionary containing workspace configuration
+
+    Returns:
+        True if workspace launched successfully
+    """
+    from .models import Workspace, AppInstance, WindowConfig
+
+    # Convert dictionary to Workspace object
+    workspace = Workspace(
+        name=workspace_data.get("name", "Unnamed"),
+        description=workspace_data.get("description", "")
+    )
+
+    # Add apps
+    for app_data in workspace_data.get("apps", []):
+        window_data = app_data.get("window", {})
+        app = AppInstance(
+            id=app_data.get("id", "unknown"),
+            exe=app_data.get("exe", ""),
+            args=app_data.get("args", []),
+            working_dir=app_data.get("working_dir"),
+            virtual_desktop=app_data.get("virtual_desktop", 0),
+            window=WindowConfig(
+                x=window_data.get("x", 0),
+                y=window_data.get("y", 0),
+                width=window_data.get("width", 800),
+                height=window_data.get("height", 600)
+            )
+        )
+        workspace.add_app(app)
+
+    # Launch using WorkspaceLauncher
+    launcher = WorkspaceLauncher()
+    return launcher.launch_workspace(workspace)
