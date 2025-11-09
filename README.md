@@ -20,22 +20,41 @@ A powerful and intuitive workspace management tool for Windows 11 that allows yo
 
 ## Installation
 
-### 1. Clone or Download
+### For Users (Recommended)
+
+Download the latest release from the [Releases](https://github.com/yourusername/workspace-manager/releases) page:
+
+**Option 1: MSI Installer** (Recommended)
+- Download `WorkspaceManager-v1.0.0.msi`
+- Double-click to install
+- Adds to Start Menu and PATH automatically
+
+**Option 2: Inno Setup Installer**
+- Download `WorkspaceManager-v1.0.0-Setup.exe`
+- Run the installer wizard
+- Choose installation location and shortcuts
+
+**Option 3: Portable (No Installation)**
+- Download `WorkspaceManager-v1.0.0.zip`
+- Extract anywhere
+- Run `WorkspaceManager.exe`
+
+### For Developers
+
+#### 1. Clone or Download
 
 ```bash
 git clone https://github.com/yourusername/workspace-manager.git
 cd workspace-manager
 ```
 
-Or download and extract the ZIP file.
-
-### 2. Install Dependencies
+#### 2. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Verify Installation
+#### 3. Verify Installation
 
 ```bash
 python main.py --help
@@ -383,6 +402,42 @@ def _filter_system_windows(self, windows):
     return [w for w in windows if w.exe_path in custom_filter]
 ```
 
+## Building and Releasing
+
+### For Developers
+
+To build standalone executables and installers:
+
+```bash
+# Build everything (EXE, ZIP, MSI, Inno Setup installer)
+python release.py
+
+# Or just EXE and ZIP (faster)
+python build.py
+
+# Or just MSI
+python setup_msi.py bdist_msi
+```
+
+**Output files** (in `dist/`):
+- `WorkspaceManager.exe` - Standalone executable (~35 MB)
+- `WorkspaceManager-v1.0.0.zip` - Portable package
+- `WorkspaceManager-v1.0.0.msi` - Windows Installer
+- `WorkspaceManager-v1.0.0-Setup.exe` - Inno Setup installer (if installed)
+
+**Documentation**:
+- See `QUICK_START_RELEASE.md` for quick guide
+- See `RELEASE.md` for detailed release process
+- See `BUILD.md` for build customization options
+
+### Creating a New Release
+
+1. Update version in `workspace_manager/__version__.py`
+2. Run `python release.py`
+3. Test the generated installers
+4. Create git tag: `git tag -a v1.1.0 -m "Release v1.1.0"`
+5. Upload to GitHub Releases
+
 ## Contributing
 
 Contributions are welcome! Please:
@@ -395,7 +450,7 @@ Contributions are welcome! Please:
 
 ## License
 
-This project is provided as-is for educational and personal use.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Support
 
